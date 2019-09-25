@@ -665,12 +665,26 @@ const VideoPlayer = (props: Props) => {
 
         {/* Play/pause buttons */}
         {seekState !== SeekStates.Seeking &&
-          (playbackState === PlaybackStates.Playing || playbackState === PlaybackStates.Paused) && (
+          (playbackState === PlaybackStates.Playing) && (
             <CenteredView
               pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'}
               // @ts-ignore
               style={{
                 opacity: controlsOpacity,
+              }}
+            >
+              <Control center={true} callback={togglePlay}>
+                <VideoPlayIcon />
+              </Control>
+            </CenteredView>
+          )}
+
+        {seekState !== SeekStates.Seeking && playbackState === PlaybackStates.Paused) && (
+            <CenteredView
+              pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'}
+              // @ts-ignore
+              style={{
+                opacity: 1,
               }}
             >
               <Control center={true} callback={togglePlay}>
