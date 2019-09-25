@@ -456,7 +456,7 @@ const VideoPlayer = (props) => {
               </Control>
             </CenteredView>)}
 
-        {seekState !== SeekStates.Seeking && playbackState === PlaybackStates.Paused) && (<CenteredView>
+        {seekState !== SeekStates.Seeking && playbackState === PlaybackStates.Paused && (<CenteredView>
               <Control center={true} callback={togglePlay}>
                 <VideoPauseIcon />
               </Control>
