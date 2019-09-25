@@ -674,21 +674,15 @@ const VideoPlayer = (props: Props) => {
               }}
             >
               <Control center={true} callback={togglePlay}>
-                <VideoPlayIcon />
+                {playbackState === PlaybackStates.Playing ? <VideoPauseIcon /> : <VideoPlayIcon />}
               </Control>
             </CenteredView>
           )}
 
         {seekState !== SeekStates.Seeking && playbackState === PlaybackStates.Paused) && (
-            <CenteredView
-              pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'}
-              // @ts-ignore
-              style={{
-                opacity: 1,
-              }}
-            >
+            <CenteredView>
               <Control center={true} callback={togglePlay}>
-                {playbackState === PlaybackStates.Playing ? <VideoPauseIcon /> : <VideoPlayIcon />}
+                <VideoPauseIcon />
               </Control>
             </CenteredView>
           )}
