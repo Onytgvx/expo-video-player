@@ -279,9 +279,9 @@ const VideoPlayer = (props) => {
         }
     };
     const togglePlay = async () => {
-        if (controlsState === ControlStates.Hidden) {
+        /*if (controlsState === ControlStates.Hidden) {
             return;
-        }
+        }*/
         const shouldPlay = playbackState !== PlaybackStates.Playing;
         if (playbackInstance !== null) {
             await playbackInstance.setStatusAsync({ shouldPlay });
