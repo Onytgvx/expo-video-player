@@ -351,7 +351,7 @@ const VideoPlayer = (props) => {
         }
         controlsTimer = setTimeout(() => onTimerDone(), hideControlsTimerDuration);
     };
-    const { playIcon: VideoPlayIcon, pauseIcon: VideoPauseIcon, spinner: VideoSpinner, fullscreenEnterIcon: VideoFullscreenEnterIcon, fullscreenExitIcon: VideoFullscreenExitIcon, replayIcon: VideoReplayIcon, switchToLandscape, switchToPortrait, inFullscreen: newIsPortrait, 
+    const { playIcon: VideoPlayIcon, pauseIcon: VideoPauseIcon, spinner: VideoSpinner, fullscreenEnterIcon: VideoFullscreenEnterIcon, fullscreenExitIcon: VideoFullscreenExitIcon, replayIcon: VideoReplayIcon, switchToLandscape, switchToPortrait, inFullscreen: newIsPortrait,
     // @deprecated - will be removed in next major version
     isPortrait: deprecatedIsPortrait, sliderColor, iosThumbImage, iosTrackImage, showFullscreenButton, textStyle, videoProps, videoBackground, width, height, } = props;
     // remove in next major version
@@ -387,7 +387,7 @@ const VideoPlayer = (props) => {
     </TouchableOpacity>);
     };
     const CenteredView = (_a) => {
-        var { children, style: viewStyle } = _a, 
+        var { children, style: viewStyle } = _a,
         // pointerEvents,
         otherProps = tslib_1.__rest(_a, ["children", "style"]);
         return (<Animated.View {...otherProps} style={[
@@ -425,8 +425,8 @@ const VideoPlayer = (props) => {
         height: videoHeight,
     }} {...otherVideoProps}/>
 
-        
-        
+
+
         {((playbackState === PlaybackStates.Buffering &&
         Date.now() - lastPlaybackStateUpdate > BUFFERING_SHOW_DELAY) ||
         playbackState === PlaybackStates.Loading) && (<View style={[
@@ -444,9 +444,9 @@ const VideoPlayer = (props) => {
             <VideoSpinner />
           </View>)}
 
-        
+
         {seekState !== SeekStates.Seeking &&
-        (playbackState === PlaybackStates.Playing || playbackState === PlaybackStates.Paused) && (<CenteredView pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'} 
+        (playbackState === PlaybackStates.Playing) && (<CenteredView pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'}
     // @ts-ignore
     style={{
         opacity: controlsOpacity,
@@ -456,17 +456,23 @@ const VideoPlayer = (props) => {
               </Control>
             </CenteredView>)}
 
-        
+        {seekState !== SeekStates.Seeking && playbackState === PlaybackStates.Paused) && (<CenteredView>
+              <Control center={true} callback={togglePlay}>
+                <VideoPauseIcon />
+              </Control>
+            </CenteredView>)}
+
+
         {playbackState === PlaybackStates.Ended && (<CenteredView>
             <Control center={true} callback={replay}>
               <VideoReplayIcon />
             </Control>
           </CenteredView>)}
 
-        
+
         {playbackState === PlaybackStates.Error && <ErrorText text={error}/>}
 
-        
+
         <Animated.View pointerEvents={controlsState === ControlStates.Hidden ? 'none' : 'auto'} style={{
         position: 'absolute',
         bottom: 0,
@@ -478,12 +484,12 @@ const VideoPlayer = (props) => {
         paddingBottom: 4,
         paddingHorizontal: 4,
     }}>
-          
+
           <Text style={[textStyle, { backgroundColor: 'transparent', marginLeft: 5 }]}>
             {getMMSSFromMillis(playbackInstancePosition)}
           </Text>
 
-          
+
           <TouchableWithoutFeedback onLayout={onSliderLayout} onPress={onSeekBarTap}>
             <Slider style={{ marginRight: 10, marginLeft: 10, flex: 1 }} thumbTintColor={sliderColor} minimumTrackTintColor={sliderColor} trackImage={iosTrackImage} thumbImage={iosThumbImage} value={getSeekSliderPosition()} onValueChange={onSeekSliderValueChange} onSlidingComplete={onSeekSliderSlidingComplete} disabled={playbackState === PlaybackStates.Loading ||
         playbackState === PlaybackStates.Ended ||
@@ -491,12 +497,12 @@ const VideoPlayer = (props) => {
         controlsState !== ControlStates.Shown}/>
           </TouchableWithoutFeedback>
 
-          
+
           <Text style={[textStyle, { backgroundColor: 'transparent', marginRight: 5 }]}>
             {getMMSSFromMillis(playbackInstanceDuration)}
           </Text>
 
-          
+
           {showFullscreenButton && (<Control transparent={true} center={false} callback={() => {
         inFullscreen ? switchToLandscape() : switchToPortrait();
     }}>
