@@ -25,6 +25,7 @@
     "lint:fix": "eslint \"lib/**/*.{js,ts,tsx}\" --fix"
   },
   "dependencies": {
+    "@react-native-community/slider": "^2.0.0",
     "react-native-slider": "^0.11.0",
     "tslib": "^1.10.0",
     "with-default-props": "^0.2.1"
