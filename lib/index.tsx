@@ -4,7 +4,6 @@ import {
   GestureResponderEvent,
   ImageURISource,
   LayoutChangeEvent,
-  Slider,
   Text,
   TextStyle,
   TouchableOpacity,
@@ -15,6 +14,7 @@ import {
   ViewStyle,
 } from 'react-native'
 import { Audio, Video } from 'expo-av'
+import { Slider } from 'react-native-slider'
 import { Color } from 'csstype'
 import {
   FullscreenEnterIcon,
