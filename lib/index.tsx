@@ -727,7 +727,7 @@ const VideoPlayer = (props: Props) => {
               minimumTrackTintColor={sliderColor}
               trackImage={iosTrackImage}
               thumbImage={iosThumbImage}
-              value={getSeekSliderPosition()}
+              value={playbackInstancePosition}
               onValueChange={onSeekSliderValueChange}
               onSlidingComplete={onSeekSliderSlidingComplete}
               disabled={
