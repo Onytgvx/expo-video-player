@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
 import { Animated, Dimensions, Text, TouchableOpacity, TouchableWithoutFeedback, View, } from 'react-native';
-import { Slider } from 'react-native-slider'
+import Slider from 'react-native-slider'
 import { Audio, Video } from 'expo-av';
 import { FullscreenEnterIcon, FullscreenExitIcon, PauseIcon, PlayIcon, ReplayIcon, Spinner, } from './assets/icons';
 import { useNetInfo } from '@react-native-community/netinfo';
