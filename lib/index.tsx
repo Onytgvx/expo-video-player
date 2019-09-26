@@ -311,14 +311,11 @@ const VideoPlayer = (props: Props) => {
 
   // Seeking
   const getSeekSliderPosition = () => {
-    if (
-      playbackInstance !== null
-      // WILL IT HAPPEN? &&
-      // playbackInstancePosition !== null &&
-      // playbackInstanceDuration !== null
-    ) {
+    if (playbackInstance != null) {
+      console.log("Not null")
       return playbackInstancePosition / playbackInstanceDuration
     }
+    console.log("It's null")
     return 0
   }
 
@@ -727,7 +724,7 @@ const VideoPlayer = (props: Props) => {
               minimumTrackTintColor={sliderColor}
               trackImage={iosTrackImage}
               thumbImage={iosThumbImage}
-              value={playbackInstancePosition}
+              value={getSeekSliderPosition()}
               onValueChange={onSeekSliderValueChange}
               onSlidingComplete={onSeekSliderSlidingComplete}
               disabled={
